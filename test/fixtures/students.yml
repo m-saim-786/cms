@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  roll_no: 1
+  Bform: MyString
+  contact: MyString
+  age: 2021-11-13
+  father_name: MyString
+  user: 
+
+two:
+  name: MyString
+  roll_no: 1
+  Bform: MyString
+  contact: MyString
+  age: 2021-11-13
+  father_name: MyString
+  user: 
