@@ -10,3 +10,14 @@
 .form-group{
   margin: 20px 0 20px 0;
 }
+
+.table-fixed{
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+#error_explanation{
+  ul{
+    color: red;
+  }
+}

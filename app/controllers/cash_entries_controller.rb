@@ -1,14 +1,12 @@
 class CashEntriesController < ApplicationController
-  before_action :set_cash_entry, only: %i[ show edit update destroy ]
+  before_action :set_cash_entry, only: %i[show edit update destroy]
+  before_action :set_all_cash_entries, only: %i[index new create]
 
   # GET /cash_entries or /cash_entries.json
-  def index
-    @cash_entries = CashEntry.all
-  end
+  def index; end
 
   # GET /cash_entries/1 or /cash_entries/1.json
-  def show
-  end
+  def show; end
 
   # GET /cash_entries/new
   def new
@@ -16,8 +14,7 @@ class CashEntriesController < ApplicationController
   end
 
   # GET /cash_entries/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /cash_entries or /cash_entries.json
   def create
@@ -60,6 +57,10 @@ class CashEntriesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_cash_entry
       @cash_entry = CashEntry.find(params[:id])
+    end
+    
+    def set_all_cash_entries
+      @cash_entries = CashEntry.all
     end
 
     # Only allow a list of trusted parameters through.

@@ -19,35 +19,7 @@
   </div>
 
   <%= link_to 'New Cash Entry', new_cash_entry_path, class: 'btn btn-primary' %>
-
-  <hr>
-  <h1>Cash Entries</h1>
-
-  <table class="table table-striped table-hover table-bordered table-dark text-center">
-    <thead>
-      <tr>
-        <th>AMOUNT</th>
-        <th>DESCRIPTION</th>
-        <th>TYPE</th>
-        <th>DATE</th>
-        <th colspan="3">ACTIONS</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @cash_entries.each do |cash_entry| %>
-      <tr>
-        <td><%= cash_entry.amount %></td>
-        <td><%= cash_entry.description %></td>
-        <td><%= cash_entry.entry_type.titleize %></td>
-        <td><%= cash_entry.date %></td>
-        <td><%= link_to 'Show', cash_entry , class: 'nav-link'%></td>
-        <td><%= link_to 'Edit', edit_cash_entry_path(cash_entry) , class: 'nav-link'%></td>
-        <td><%= link_to 'Destroy', cash_entry, method: :delete, data: { confirm: 'Are you sure?' } , class: 'nav-link'%></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <br>
+  
+  <%= render partial: "table", locals: { cash_entries: @cash_entries } %>
+  
 </div>

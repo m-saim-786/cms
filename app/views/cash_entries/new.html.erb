@@ -3,3 +3,5 @@
 <%= render 'form', cash_entry: @cash_entry %>
 
 <%= link_to 'Back', cash_entries_path %>
+
+<%= render partial: "table", locals: { cash_entries: @cash_entries } %>
