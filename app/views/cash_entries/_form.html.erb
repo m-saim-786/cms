@@ -1,0 +1,33 @@
+<%= form_with model: cash_entry, local: true, class: 'form' do |form| %>
+  <% if cash_entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cash_entry.errors.count, "error") %> prohibited this cash_entry from being saved:</h2>
+
+      <ul>
+      <% cash_entry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.label :amount%>
+    <%= form.number_field :amount, class: 'form-control', min: 0%>
+  </div>
+
+  <div class="form-group field">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'form-control'%>
+  </div>
+  
+  <div class="form-group field">
+    <%= form.label :date %>
+    <%= form.date_field :date, class: 'form-control' %>
+  </div>
+
+  <div class="form-group actions">
+    <%= form.submit "cash_in" , class: 'btn btn-success'%>
+    <%= form.submit "cash_out", class: 'btn btn-danger'%>
+  </div>
+<% end %>

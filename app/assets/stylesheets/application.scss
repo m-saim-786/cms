@@ -17,6 +17,7 @@
  body{
   margin: 0;
   padding: 0; 
+  overflow-x: hidden;
  }
  
  .side-bar{
@@ -25,4 +26,12 @@
  
 .height-max{
   height: 100vh;
+}
+
+a:hover {
+  color: skyblue !important
+}
+
+.nav-link{
+  color: white !important
 }

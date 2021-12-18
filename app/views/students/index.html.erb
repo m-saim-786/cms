@@ -1,18 +1,17 @@
-<p id="notice"><%= notice %></p>
-
+<%= link_to 'New Student', new_student_path, class: 'btn btn-primary my-2' %>
+<hr>
 <h1>Students</h1>
 
-<table>
+<table class="table table-striped table-hover table-bordered table-dark text-center">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Roll no</th>
-      <th>Bform</th>
-      <th>Contact</th>
-      <th>Age</th>
-      <th>Father name</th>
-      <th>User</th>
-      <th colspan="3"></th>
+      <th>NAME</th>
+      <th>ROLL NO</th>
+      <th>BFORM</th>
+      <th>CONTACT</th>
+      <th>AGE</th>
+      <th>FATHER NAME</th>
+      <th colspan="3">ACTIONS</th>
     </tr>
   </thead>
 
@@ -24,11 +23,10 @@
         <td><%= student.Bform %></td>
         <td><%= student.contact %></td>
         <td><%= student.age %></td>
-        <td><%= student.father_name %></td>
-        <td><%= student.user %></td>
-        <td><%= link_to 'Show', student %></td>
-        <td><%= link_to 'Edit', edit_student_path(student) %></td>
-        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= student.father_name %></td> 
+        <td><%= link_to 'Show', student , class: 'nav-link' %></td>
+        <td><%= link_to 'Edit', edit_student_path(student), class: 'nav-link' %></td>
+        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } , class: 'nav-link' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +34,3 @@
 
 <br>
 
-<%= link_to 'New Student', new_student_path %>

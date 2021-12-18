@@ -21,7 +21,7 @@ class StudentsController < ApplicationController
 
   # POST /students or /students.json
   def create
-    @student = Student.new(student_params)
+    @student = current_user.students.new(student_params)
 
     respond_to do |format|
       if @student.save
@@ -64,6 +64,6 @@ class StudentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def student_params
-      params.require(:student).permit(:name, :roll_no, :Bform, :contact, :age, :father_name, :user)
+      params.require(:student).permit(:name, :roll_no, :Bform, :contact, :age, :father_name)
     end
 end
