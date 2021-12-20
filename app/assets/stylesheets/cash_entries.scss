@@ -1,0 +1,23 @@
+// Place all the styles related to the cash_entries controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.justify-space-evenly{
+  justify-content: space-around;
+}
+
+.form-group{
+  margin: 20px 0 20px 0;
+}
+
+.table-fixed{
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+#error_explanation{
+  ul{
+    color: red;
+  }
+}

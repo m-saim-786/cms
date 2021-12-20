@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="bg-light p-3 my-4 rounded ">
+    <h2 class='text-center text-uppercase'> Total</h2>
+    <hr>
+    <div class="d-flex align-items-center justify-space-evenly">
+      <div class="text-center alert alert-success">
+        <h4 class="ml-3 p-1 text-uppercase">Cash In</h4>
+        <h4 class="ml-3 p-1 text-success"><%= CashEntry.total_cash_in %></h4>
+      </div>
+      <div class="text-center alert alert-danger">
+        <h4 class="ml-3 p-1 text-uppercase">Cash Out</h4>
+        <h4 class="ml-3 p-1 text-danger"><%= CashEntry.total_cash_out %></h4>
+      </div>
+      <div class="text-center alert alert-success">
+        <h4 class="ml-3 p-1 text-uppercase">Balance</h4>
+        <h4 class="ml-3 p-1 <%= balance_text_color(CashEntry.total_balance)%>"><%= CashEntry.total_balance %></h4>
+      </div>
+    </div>
+  </div>
+
+  <%= link_to 'New Cash Entry', new_cash_entry_path, class: 'btn btn-primary' %>
+  
+  <%= render partial: "table", locals: { cash_entries: @cash_entries } %>
+  
+</div>

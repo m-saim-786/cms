@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_13_152618) do
+ActiveRecord::Schema.define(version: 2021_12_18_164103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cash_entries", force: :cascade do |t|
+    t.integer "amount", null: false
+    t.text "description", null: false
+    t.bigint "user_id"
+    t.integer "entry_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "date", default: -> { "CURRENT_DATE" }
+    t.index ["user_id"], name: "index_cash_entries_on_user_id"
+  end
+
+  create_table "fee_records", force: :cascade do |t|
+    t.bigint "student_id"
+    t.date "submited_on"
+    t.date "month_of"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_fee_records_on_student_id"
+  end
 
   create_table "students", force: :cascade do |t|
     t.string "name"
@@ -22,10 +42,23 @@ ActiveRecord::Schema.define(version: 2021_11_13_152618) do
     t.string "contact"
     t.date "age"
     t.string "father_name"
+    t.integer "fee"
     t.bigint "user_id"
+    t.integer "grade"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_students_on_user_id"
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "name"
+    t.string "contact"
+    t.string "qualification"
+    t.string "bloog_group"
+    t.integer "pay"
+    t.integer "salary_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,5 +73,7 @@ ActiveRecord::Schema.define(version: 2021_11_13_152618) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cash_entries", "users"
+  add_foreign_key "fee_records", "students"
   add_foreign_key "students", "users"
 end
