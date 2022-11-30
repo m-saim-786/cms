@@ -1,9 +1,18 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: %i[ show edit update destroy ]
+  before_action :set_grades, only: %i[ new edit create ]
 
   # GET /students or /students.json
   def index
-    @students = Student.all
+    @q = Student.ransack(params[:q])
+    @students = @q.result
+  end
+
+  def unpaid_list
+    start_date = params[:month]
+    end_date = params[:month] ? params[:month].end_of_month : Date.today
+    ids = Student.pluck(:id) - FeeDetail.paid_list(start_date, end_date)
+    @students = Student.where(id: ids)
   end
 
   # GET /students/1 or /students/1.json
@@ -62,8 +71,12 @@ class StudentsController < ApplicationController
       @student = Student.find(params[:id])
     end
 
+    def set_grades
+      @grades = Grade.pluck(:name, :id)
+    end
+
     # Only allow a list of trusted parameters through.
     def student_params
-      params.require(:student).permit(:name, :roll_no, :Bform, :contact, :age, :father_name)
+      params.require(:student).permit(:name, :roll_no, :Bform, :contact, :age, :father_name, :fee_amount, :grade_id)
     end
 end

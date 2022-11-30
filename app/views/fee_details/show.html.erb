@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @fee_detail.student.name %>
+</p>
+
+<p>
+  <strong>Submitted at:</strong>
+  <%= @fee_detail.submitted_at %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @fee_detail.status %>
+</p>
+
+<%= link_to 'Edit', edit_student_fee_detail_path(@fee_detail.student, @fee_detail) %> |
+<%= link_to 'Back', fee_details_path %>

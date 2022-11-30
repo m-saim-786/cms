@@ -1,0 +1,22 @@
+<%= form_with(model: [student, fee_detail], local: true) do |form| %>
+  <% if fee_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(fee_detail.errors.count, "error") %> prohibited this fee_detail from being saved:</h2>
+
+      <ul>
+      <% fee_detail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :submitted_at %>
+    <%= form.date_field :submitted_at %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

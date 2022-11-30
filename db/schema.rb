@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_18_164103) do
+ActiveRecord::Schema.define(version: 2022_05_14_131445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,13 +26,24 @@ ActiveRecord::Schema.define(version: 2021_12_18_164103) do
     t.index ["user_id"], name: "index_cash_entries_on_user_id"
   end
 
-  create_table "fee_records", force: :cascade do |t|
+  create_table "fee_details", force: :cascade do |t|
+    t.bigint "user_id"
     t.bigint "student_id"
-    t.date "submited_on"
-    t.date "month_of"
+    t.date "submitted_at"
+    t.integer "status"
+    t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["student_id"], name: "index_fee_records_on_student_id"
+    t.index ["student_id"], name: "index_fee_details_on_student_id"
+    t.index ["user_id"], name: "index_fee_details_on_user_id"
+  end
+
+  create_table "grades", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_grades_on_user_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -42,23 +53,13 @@ ActiveRecord::Schema.define(version: 2021_12_18_164103) do
     t.string "contact"
     t.date "age"
     t.string "father_name"
-    t.integer "fee"
     t.bigint "user_id"
-    t.integer "grade"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "fee_amount", null: false
+    t.bigint "grade_id"
+    t.index ["grade_id"], name: "index_students_on_grade_id"
     t.index ["user_id"], name: "index_students_on_user_id"
-  end
-
-  create_table "teachers", force: :cascade do |t|
-    t.string "name"
-    t.string "contact"
-    t.string "qualification"
-    t.string "bloog_group"
-    t.integer "pay"
-    t.integer "salary_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,6 +75,9 @@ ActiveRecord::Schema.define(version: 2021_12_18_164103) do
   end
 
   add_foreign_key "cash_entries", "users"
-  add_foreign_key "fee_records", "students"
+  add_foreign_key "fee_details", "students"
+  add_foreign_key "fee_details", "users"
+  add_foreign_key "grades", "users"
+  add_foreign_key "students", "grades"
   add_foreign_key "students", "users"
 end

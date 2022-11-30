@@ -1,0 +1,34 @@
+<table class="table table-striped table-hover table-bordered table-dark text-center">
+  <thead>
+    <tr>
+      <th>NAME</th>
+      <th>ROLL NO</th>
+      <th>BFORM</th>
+      <th>CONTACT</th>
+      <th>AGE</th>
+      <th>FATHER NAME</th>
+      <th>FEE AMOUNT</th>
+      <th>CLASS</th>
+      <th colspan="4">ACTIONS</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% students.each do |student| %>
+      <tr>
+        <td><%= student.name %></td>
+        <td><%= student.roll_no %></td>
+        <td><%= student.Bform %></td>
+        <td><%= student.contact %></td>
+        <td><%= student.age %></td>
+        <td><%= student.father_name %></td> 
+        <td><%= student.fee_amount %></td> 
+        <td><%= student.grade.name %></td> 
+        <td><%= link_to 'Pay Fee', new_student_fee_detail_path(student) , class: 'nav-link' %></td>
+        <td><%= link_to 'Show', student , class: 'nav-link' %></td>
+        <td><%= link_to 'Edit', edit_student_path(student), class: 'nav-link' %></td>
+        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } , class: 'nav-link' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

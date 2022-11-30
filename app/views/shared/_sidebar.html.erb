@@ -1,4 +1,4 @@
-<div class="sidebar-sticky bg-dark height-max p-2 ml-5">
+<div class="sidebar-sticky bg-dark height-max p-2 ml-5" id="side-bar">
   <ul class="nav flex-column">
     <li class="nav-item">
       <a class="nav-link active" href="<%= root_path %>">
@@ -11,6 +11,14 @@
         Dashboard
       </a>
     </li>
+    <% if user_signed_in? %>
+     <li class="nav-item">
+      <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link', data: { confirm: 'Are you sure?' } %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Settings', settings_path, class: 'nav-link' %>
+    </li>
+    <% end %>
     <li class="nav-item">
       <a class="nav-link" href=" <%= students_path %> ">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -35,7 +43,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">
+      <%= link_to fee_details_path, class: 'nav-link' do %>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
           class="feather feather-users">
@@ -44,8 +52,8 @@
           <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
           <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
         </svg>
-        Customers
-      </a>
+        Fee Records
+      <% end %>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">
