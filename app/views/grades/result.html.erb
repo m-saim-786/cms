@@ -1,0 +1,13 @@
+<%= search_form_for(@q, url: result_grades_path) do |f| %>
+
+  <%= f.label :result_type_title_cont %>
+  <%= f.select :result_type_id_eq, options_from_collection_for_select(ResultType.all, "id", "title") %>
+  
+  <%= f.label :grade_name_eq %>
+  <%= f.select :grade_name_eq, options_from_collection_for_select(Grade.all, "name", "name") %>
+  
+
+  <%= f.submit %>
+<% end %>
+
+<%= @results.count %>

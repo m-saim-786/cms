@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CashEntriesController < ApplicationController
   before_action :set_cash_entry, only: %i[show edit update destroy]
   before_action :set_all_cash_entries, only: %i[index new create]
@@ -22,7 +24,7 @@ class CashEntriesController < ApplicationController
 
     respond_to do |format|
       if @cash_entry.save
-        format.html { redirect_to new_cash_entry_path, notice: "Cash entry was successfully created." }
+        format.html { redirect_to new_cash_entry_path, notice: 'Cash entry was successfully created.' }
         format.json { render :show, status: :created, location: @cash_entry }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -35,7 +37,7 @@ class CashEntriesController < ApplicationController
   def update
     respond_to do |format|
       if @cash_entry.update(cash_entry_params.merge(entry_type: params[:commit]))
-        format.html { redirect_to cash_entries_path, notice: "Cash entry was successfully updated." }
+        format.html { redirect_to cash_entries_path, notice: 'Cash entry was successfully updated.' }
         format.json { render :show, status: :ok, location: @cash_entry }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -48,23 +50,24 @@ class CashEntriesController < ApplicationController
   def destroy
     @cash_entry.destroy
     respond_to do |format|
-      format.html { redirect_to cash_entries_url, notice: "Cash entry was successfully destroyed." }
+      format.html { redirect_to cash_entries_url, notice: 'Cash entry was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cash_entry
-      @cash_entry = CashEntry.find(params[:id])
-    end
-    
-    def set_all_cash_entries
-      @cash_entries = CashEntry.all
-    end
 
-    # Only allow a list of trusted parameters through.
-    def cash_entry_params
-      params.require(:cash_entry).permit(:amount, :description, :entry_type, :date)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cash_entry
+    @cash_entry = CashEntry.find(params[:id])
+  end
+
+  def set_all_cash_entries
+    @cash_entries = current_user.cash_entries
+  end
+
+  # Only allow a list of trusted parameters through.
+  def cash_entry_params
+    params.require(:cash_entry).permit(:amount, :description, :entry_type, :date)
+  end
 end

@@ -1,15 +1,16 @@
+# frozen_string_literal: true
+
 class FeeDetailsController < ApplicationController
-  before_action :set_fee_detail, only: %i[ show edit update destroy ]
-  before_action :set_student, only: %i[ new edit create update ]
+  before_action :set_fee_detail, only: %i[show edit update destroy]
+  before_action :set_student, only: %i[new edit create update]
 
   # GET /fee_details or /fee_details.json
   def index
-    @fee_details = FeeDetail.all
+    @fee_details = current_user.fee_details
   end
 
   # GET /fee_details/1 or /fee_details/1.json
-  def show
-  end
+  def show; end
 
   # GET /fee_details/new
   def new
@@ -17,8 +18,7 @@ class FeeDetailsController < ApplicationController
   end
 
   # GET /fee_details/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /fee_details or /fee_details.json
   def create
@@ -27,7 +27,7 @@ class FeeDetailsController < ApplicationController
 
     respond_to do |format|
       if @fee_detail.save
-        format.html { redirect_to @fee_detail, notice: "Fee detail was successfully created." }
+        format.html { redirect_to @fee_detail, notice: 'Fee detail was successfully created.' }
         format.json { render :show, status: :created, location: @fee_detail }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class FeeDetailsController < ApplicationController
   def update
     respond_to do |format|
       if @fee_detail.update(updated_params)
-        format.html { redirect_to @fee_detail, notice: "Fee detail was successfully updated." }
+        format.html { redirect_to @fee_detail, notice: 'Fee detail was successfully updated.' }
         format.json { render :show, status: :ok, location: @fee_detail }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,27 +53,28 @@ class FeeDetailsController < ApplicationController
   def destroy
     @fee_detail.destroy
     respond_to do |format|
-      format.html { redirect_to fee_details_url, notice: "Fee detail was successfully destroyed." }
+      format.html { redirect_to fee_details_url, notice: 'Fee detail was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_fee_detail
-      @fee_detail = FeeDetail.find(params[:id])
-    end
 
-    def set_student
-      @student = Student.find(params[:student_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_fee_detail
+    @fee_detail = FeeDetail.find(params[:id])
+  end
 
-    def updated_params
-      fee_detail_params.merge(student_id: params[:student_id], status: 'paid')
-    end
+  def set_student
+    @student = Student.find(params[:student_id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def fee_detail_params
-      params.require(:fee_detail).permit(:submitted_at, :status)
-    end
+  def updated_params
+    fee_detail_params.merge(student_id: params[:student_id], status: 'paid')
+  end
+
+  # Only allow a list of trusted parameters through.
+  def fee_detail_params
+    params.require(:fee_detail).permit(:submitted_at, :status)
+  end
 end
