@@ -9,7 +9,7 @@
       <th>FATHER NAME</th>
       <th>FEE AMOUNT</th>
       <th>CLASS</th>
-      <th colspan="4">ACTIONS</th>
+      <th colspan="5">ACTIONS</th>
     </tr>
   </thead>
 
@@ -28,6 +28,7 @@
         <td><%= link_to 'Show', student , class: 'nav-link' %></td>
         <td><%= link_to 'Edit', edit_student_path(student), class: 'nav-link' %></td>
         <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } , class: 'nav-link' %></td>
+        <td><%= link_to 'Restults', student_results_path(student), class: 'nav-link' %></td>
       </tr>
     <% end %>
   </tbody>

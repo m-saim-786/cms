@@ -1,0 +1,23 @@
+<h1>Result</h1>
+
+<h2>Marks</h2>
+
+<table class="table table-striped table-hover table-bordered table-dark text-center">
+  <thead>
+    <tr>
+      <th>SUBJECT</th>
+      <th>TOTAL MARKS</th>
+      <th>OBTAIN MARKS</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @result.marks.each do |m| %>
+      <tr>
+        <td><%= m.subject.name %></td>
+        <td><%= m.total_marks %></td>
+        <td><%= m.obtain_marks %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

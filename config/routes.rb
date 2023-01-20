@@ -1,8 +1,19 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  resources :grades
+  resources :result_types
+  resources :subjects
+  resources :grades do
+    get :result, on: :collection
+  end
   resources :cash_entries
   resources :students do
+    resources :results, only: %i[index show]
     resources :fee_details, only: %i[new edit create update]
+    member do
+      post :result
+      get :new_result
+    end
     collection do
       get :unpaid_list
     end

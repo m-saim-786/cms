@@ -1,0 +1,19 @@
+<table class="table table-striped table-hover table-bordered table-dark text-center">
+  <thead>
+    <tr>
+      <th>RESULT TYPE</th>
+      <th>MONTH</th>
+      <th colspan="5">ACTIONS</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @results.each do |result| %>
+      <tr>
+        <td><%= result.result_type.title.titleize %></td>
+        <td><%= result.month %></td>
+        <td><%= link_to 'View', student_result_path(@student, result), class: 'nav-link' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @result_type.title %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @result_type.user %>
+</p>
+
+<%= link_to 'Edit', edit_result_type_path(@result_type) %> |
+<%= link_to 'Back', result_types_path %>

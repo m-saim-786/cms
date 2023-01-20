@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Result Types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @result_types.each do |result_type| %>
+      <tr>
+        <td><%= result_type.title %></td>
+        <td><%= result_type.user %></td>
+        <td><%= link_to 'Show', result_type %></td>
+        <td><%= link_to 'Edit', edit_result_type_path(result_type) %></td>
+        <td><%= link_to 'Destroy', result_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Result Type', new_result_type_path %>
