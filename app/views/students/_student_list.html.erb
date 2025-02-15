@@ -23,7 +23,7 @@
         <td><%= student.age %></td>
         <td><%= student.father_name %></td> 
         <td><%= student.fee_amount %></td> 
-        <td><%= student.grade.name %></td> 
+        <td><%= student.grade&.name %></td> 
         <td><%= link_to 'Pay Fee', new_student_fee_detail_path(student) , class: 'nav-link' %></td>
         <td><%= link_to 'Show', student , class: 'nav-link' %></td>
         <td><%= link_to 'Edit', edit_student_path(student), class: 'nav-link' %></td>
