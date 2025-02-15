@@ -15,7 +15,7 @@
     <% @result_types.each do |result_type| %>
       <tr>
         <td><%= result_type.title %></td>
-        <td><%= result_type.user %></td>
+        <td><%= result_type.user.email %></td>
         <td><%= link_to 'Show', result_type %></td>
         <td><%= link_to 'Edit', edit_result_type_path(result_type) %></td>
         <td><%= link_to 'Destroy', result_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
